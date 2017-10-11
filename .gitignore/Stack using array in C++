@@ -1,0 +1,85 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Stack* crestack(unsigned capacity);
+bool isfull(struct Stack* stack);
+bool isEmpty(struct Stack* stack);
+void push(struct Stack* stack,int item);
+int pop(struct Stack* stack);
+int peek(struct Stack* stack);
+void max(struct Stack* stack);
+
+struct Stack{
+  int top;
+  int* array;
+  unsigned capacity;
+};
+
+
+int main()
+{
+  struct Stack* stack = crestack(3);
+  push(stack,121);
+  push(stack,144);
+  push(stack,169);
+  max(stack);
+  
+  return 0;
+}
+
+struct Stack* crestack(unsigned capacity)
+{
+  struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
+  stack->top = -1;
+  stack->capacity = capacity;
+  stack->array = (int*)malloc(sizeof(capacity*sizeof(int)));
+  return stack;
+}
+bool isfull(struct Stack* stack)
+{
+  return ( stack->top == stack->capacity - 1);
+}
+
+bool isEmpty(struct Stack* stack)
+{
+  return ( stack->top == -1);
+
+}
+
+
+void push(struct Stack* stack,int item)
+{
+  
+  if(isfull(stack)) return;
+  stack->array[++stack->top] = item;
+  cout << item << " is pushed " << endl;
+}
+
+int pop(struct Stack* stack)
+{
+
+  if(isEmpty(stack)) return INT_MIN;
+  return stack->array[stack->top--];
+  
+}
+
+int peek(struct Stack* stack)
+{
+  if(isEmpty(stack))
+    return INT_MIN;
+  return stack->array[stack->top];
+}
+
+void max(struct Stack* stack)
+{
+  int n1 = stack->capacity;
+  int n2 = stack->top;
+  if(isEmpty(stack)) return;
+  int m = stack->array[0];
+  for(int i=0;i<=n2;i++)
+  {
+    if(stack->array[i] > m)
+     m = stack->array[i];
+  }
+  cout << m << endl;
+}
