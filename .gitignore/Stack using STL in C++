@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+void shwstk(stack <int> g);
+int main()
+{
+  stack <int> gks;
+  gks.push(21);
+  gks.push(44);
+  gks.push(69);
+  shwstk(gks);
+  
+  cout << gks.top();
+  cout << gks.size();
+  
+  
+}
+
+void shwstk(stack <int> g)
+{
+  while(!g.empty())
+  {
+    cout << g.top() << " ";
+    g.pop();
+  }
+  cout << endl;
+}
