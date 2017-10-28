@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Queue{
+  int front,rear,size;
+  unsigned capacity;
+  int* array;
+};
+
+struct Queue* crq(unsigned capacity)
+{
+  struct Queue* que = (struct Queue*)malloc(sizeof(struct Queue));
+  que->capacity = capacity;
+  que->size = que->front = 0;
+  que->rear = que->capacity -1;
+  que->array = (int*)malloc(capacity*sizeof(int));
+  return que;
+}
+
+int isfull(struct Queue* que)
+{
+  return (que->size == que->capacity);
+}
+
+int isEmpty(struct Queue* que)
+{
+  return (que->size == 0);
+}
+
+void enqueue(struct Queue* que,int item)
+{
+  if(isfull(que)) return;
+  que->rear = (que->rear + 1)%que->capacity;
+  que->array[que->rear] = item;
+  que->size++;
+}
+
+void dequeue(struct Queue* que)
+{
+  if(isEmpty(que)) return;
+  que->front = (que->front + 1)%que->capacity;
+  que->size-- ;
+}
+
+int front(struct Queue* que)
+{
+  if(isEmpty(que)) return INT_MIN;
+  return que->array[que->front];
+}
+
+int rear(struct Queue* que)
+{
+  if(isEmpty(que)) return INT_MIN;
+  return que->array[que->rear];
+}
+
+int main()
+{
+  struct Queue* que = crq(5);
+  enqueue(que,121);
+  enqueue(que,144);
+  enqueue(que,169);
+  enqueue(que,196);
+  enqueue(que,225);
+  dequeue(que);
+  cout << front(que) << endl;
+  cout << rear(que) << endl;
+}
