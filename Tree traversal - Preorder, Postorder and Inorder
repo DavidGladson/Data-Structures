@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+#include<iostream>
+using namespace std;
+
+struct node{
+  int data;
+  node* left;
+  node* right;
+  
+};
+
+struct node* crno(int data)
+{
+  struct node* nd = (struct node*)malloc(sizeof(struct node));
+  nd->data = data;
+  nd->right = NULL;
+  nd->left = NULL;
+  return nd;
+}
+
+
+void preorder(struct node* nd)
+{
+  if(nd == NULL) return;
+  cout << nd->data  << " " << endl;
+  preorder(nd->left);
+  preorder(nd->right);
+}
+
+void inorder(struct node* nd)
+{
+  inorder(nd->left);
+  if(nd == NULL) return;
+  cout << nd->data  << " " << endl;
+  inorder(nd->right);
+}
+
+void postorder(struct node* nd)
+{
+  postorder(nd->left);
+  postorder(nd->right);
+  if(nd == NULL) return;
+  cout << nd->data  << " " << endl;
+  
+}
+
+
+
+int main()
+{
+  cout << "ok" << endl;
+  struct node *nd = crno(1);
+  nd->left = crno(2);
+  nd->left->left = crno(4);
+  nd->left->right = crno(5);
+  nd->left->right->left = crno(6);
+  nd->right = crno(3);
+  preorder(nd);
+  
+}
