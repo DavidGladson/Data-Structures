@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+  priority_queue <int> pq;
+  //default max heap
+  pq.push(23);
+  pq.push(86);
+  pq.push(76);
+  pq.push(56);
+  pq.push(13);
+  pq.push(36);
+  pq.push(43);
+  while(!pq.empty())
+  {cout << pq.top() << " ";
+  pq.pop();
+  }
+  
+  cout <<endl;
+  
+  priority_queue <int ,vector<int> ,greater<int>> p;
+  // two extra arguments to make it a min heap
+  p.push(23);
+  p.push(86);
+  p.push(76);
+  p.push(56);
+  p.push(13);
+  p.push(36);
+  p.push(43);
+  while(!p.empty())
+  {cout << p.top() << " ";
+  p.pop();
+  
+}
+}
